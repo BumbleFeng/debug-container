@@ -1,0 +1,12 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: debug-container
+spec:
+  containers:
+    - name: debug-container
+      image: quay.io/tparikh/debug-container
+      command: [ "/bin/bash", "-c", "--" ]
+      args: [ "while true; do sleep 7200; done;" ]
+
