@@ -1,6 +1,8 @@
 FROM ubuntu
 
-RUN apt-get update \
+ADD urldecode.sh .
+RUN chmod u+x /urldecode.sh \
+    && apt-get update \
     && apt-get install -y postgresql-client \
     mysql-client \
     dnsutils \
