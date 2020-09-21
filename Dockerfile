@@ -11,6 +11,9 @@ RUN chmod u+x /urldecode.sh \
     mtr \
     curl \
     wget \
-    traceroute
+    traceroute \
+    rsync
 
+CMD ["while true; do sleep 86400; done;"]
+ENTRYPOINT [ "/bin/bash", "-c", "--" ]
 
