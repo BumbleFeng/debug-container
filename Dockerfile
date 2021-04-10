@@ -3,7 +3,8 @@ FROM ubuntu
 ADD urldecode.sh .
 RUN chmod u+x /urldecode.sh \
     && apt-get update \
-    && apt-get install -y postgresql-client-12 \
+    && DEBIAN_FRONTEND="noninteractive" apt-get install -y \
+    postgresql-client-12 \
     mysql-client \
     dnsutils \
     telnet \
@@ -12,8 +13,11 @@ RUN chmod u+x /urldecode.sh \
     curl \
     wget \
     traceroute \
-    rsync
-
-CMD ["while true; do sleep 86400; done;"]
-ENTRYPOINT [ "/bin/bash", "-c", "--" ]
-
+    rsync \
+    tcl build-essential pkg-config libssl-dev\
+    && wget http://download.redis.io/redis-stable.tar.gz \
+    && tar xzf redis-stable.tar.gz \
+    && cd redis-stable \
+    && make BUILD_TLS=yes MALLOC=libc install \
+    && cd .. && rm -rf redis-stable && rm redis-stable.tar.gz \
+    && rm /bin/sh && ln -s /bin/bash /bin/sh

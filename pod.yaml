@@ -6,7 +6,7 @@ metadata:
 spec:
   containers:
     - name: debug-container
-      image: quay.io/tparikh/debug-container
+      image: quay.io/bumblefeng/debug-container
       command: [ "/bin/bash", "-c", "--" ]
       args: [ "while true; do sleep 7200; done;" ]
 
